@@ -1,0 +1,16 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/wttrd
+wttrd.so
+wttrd.dylib
+wttrd.dll
+wttrd.a
+wttrd.lib
+wttrd-test-*
+*.exe
+*.pdb
+*.o
+*.obj
+*.lst

@@ -1,0 +1,5 @@
+name "wttrd"
+description "Minimal library for working with wttr.in weather informer"
+authors "Oleg Bakharev"
+copyright "Copyright © 2023, Oleg Bakharev"
+license "ESL 1.0"
