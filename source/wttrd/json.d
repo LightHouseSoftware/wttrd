@@ -26,7 +26,7 @@ private {
 	alias JSON2string = fromJSON;
 	
 	// query to get data from wttr.in in JSON format wuth 3 day and current conditioon data
-	enum WTTR_QUERY = `"https://wttr.in/%s?Q?m&format=j1&lang=en"`;
+	enum WTTR_QUERY = `https://wttr.in/%s?Q?m&format=j1&lang=en`;
 }
 
 
