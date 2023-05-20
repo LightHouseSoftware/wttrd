@@ -6,6 +6,7 @@ public {
 	
 	import std.net.curl;
 	
+	import wttrd.conditions;
 	import wttrd.daily;
 	import wttrd.weather;
 }
@@ -14,6 +15,7 @@ public {
 private {
 	import std.conv : to;
 	
+	/// Simple helper for getting data from JSON dictionary
 	auto fromJSON(T = string)(JSONValue json, string key) {
 		static if (is(T : string))
 			return json[key].str;
@@ -134,4 +136,52 @@ auto weatherFromWttr(string location) {
 			.get
 			.parseJSON
 			.weatherFromWttrJSON;
+}
+
+
+/// Get current conditions from wttr.in by specifying location
+auto conditionsFromWttrJSON(JSONValue wttrResponse)
+{
+	CurrentCondition conditions;
+	
+	auto wttrContent = wttrResponse["current_condition"];
+	
+	with (conditions) {
+		auto w = wttrContent[0];
+		
+		feelsLikeC = JSON2float(w, "FeelsLikeC");
+		feelsLikeF = JSON2float(w, "FeelsLikeF");
+		cloudCover = JSON2float(w, "cloudcover");
+		humidity = JSON2float(w, "humidity");
+		localObsDateTime = JSON2string(w, "localObsDateTime");
+		observationTime = JSON2string(w, "observation_time");
+		precipInches = JSON2float(w, "precipInches");
+		precipMM = JSON2float(w, "precipMM");
+		pressure = JSON2float(w, "pressure");
+		pressureInches = JSON2float(w, "pressureInches");
+		tempC = JSON2float(w, "temp_C");
+		tempF = JSON2float(w, "temp_F");
+		uvIndex = JSON2float(w, "uvIndex");
+		visibility = JSON2float(w, "visibility");
+		visibilityMiles = JSON2float(w, "visibilityMiles");
+		weatherCode = JSON2int(w, "weatherCode");
+		weatherDesc = w["weatherDesc"][0]["value"].str;
+		weatherIconUrl = w["weatherIconUrl"][0]["value"].str;
+		windDir16Point = JSON2string(w, "winddir16Point");
+		windDirDegree =  JSON2float(w, "winddirDegree");
+		windSpeedKmph =  JSON2float(w, "windspeedKmph");
+		windSpeedMiles = JSON2float(w, "windspeedMiles");
+	}
+	
+	return conditions; 
+}
+
+
+/// Get current conditions from wttr.in by specifying location
+auto currentConditionsFromWttr(string location) {
+	return WTTR_QUERY
+			.format(location)
+			.get
+			.parseJSON
+			.currentConditionsFromWttr;
 }
