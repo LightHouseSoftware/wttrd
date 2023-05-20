@@ -183,5 +183,5 @@ auto conditionFromWttr(string location) {
 			.format(location)
 			.get
 			.parseJSON
-			.conditionsFromWttrJSON;
+			.conditionFromWttrJSON;
 }
