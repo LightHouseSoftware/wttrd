@@ -178,10 +178,10 @@ auto conditionsFromWttrJSON(JSONValue wttrResponse)
 
 
 /// Get current conditions from wttr.in by specifying location
-auto currentConditionsFromWttr(string location) {
+auto conditionsFromWttr(string location) {
 	return WTTR_QUERY
 			.format(location)
 			.get
 			.parseJSON
-			.currentConditionsFromWttr;
+			.conditionsFromWttrJSON;
 }
