@@ -6,7 +6,7 @@ public {
 	
 	import std.net.curl;
 	
-	import wttrd.conditions;
+	import wttrd.condition;
 	import wttrd.daily;
 	import wttrd.weather;
 }
@@ -140,7 +140,7 @@ auto weatherFromWttr(string location) {
 
 
 /// Get current conditions from wttr.in by specifying location
-auto conditionsFromWttrJSON(JSONValue wttrResponse)
+auto conditionFromWttrJSON(JSONValue wttrResponse)
 {
 	CurrentCondition conditions;
 	
@@ -178,7 +178,7 @@ auto conditionsFromWttrJSON(JSONValue wttrResponse)
 
 
 /// Get current conditions from wttr.in by specifying location
-auto conditionsFromWttr(string location) {
+auto conditionFromWttr(string location) {
 	return WTTR_QUERY
 			.format(location)
 			.get

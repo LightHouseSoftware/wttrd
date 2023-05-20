@@ -1,4 +1,4 @@
-module wttrd.conditions;
+module wttrd.condition;
 
 // текущая погодная сводка
 struct CurrentCondition {
